@@ -1,10 +1,40 @@
 # Khang Nguyen
-# CS361 Individual Project Milestone #1
-# Nutritional lookup and tracker
+# CS361 Project: nutritional lookup and tracker
 
 import sys
+import time
 
-# temporary nutrition database
+
+def log_food(data):
+    """
+    Write to 'food_info.txt': "{name of food}, {number of servings}, {calories}, {protein in grams},
+    {water in grams}, {carbs in grams}, {sugar in grams}, {fiber in grams}, {fat in grams}".
+    Write "log" to 'run_service.txt' for 'LR_service.py' to save food nutritional data
+    from 'food_info.txt'.
+    """
+    with open('food_info.txt', 'w') as f:
+        f.write(data)
+    with open('run_service.txt', 'w') as f:
+        f.write("log")
+    time.sleep(2)
+    with open('run_service.txt', 'w') as f:
+        f.write("")
+
+
+def get_total():
+    """
+    Write "get_total" to 'run_service.txt' for 'LR_service.py' to retrieve totals of
+    nutritional data logged. Reads each line of 'total.txt'.
+    """
+    with open('run_service.txt', 'w') as f:
+        f.write("get_total")
+    time.sleep(2)
+    with open('total.txt', 'r') as f:
+        total = f.read()
+    with open('run_service.txt', 'w') as f:
+        f.write("")
+    return total
+
 nutriData = {
     'labels': ['calories', 'water, g', 'protein, g', 'carbs, g', 'sugar, g', 'fiber, g', 'fat, g'],
     'apple': [94.6, 156, 0.43, 25.1, 18.9, 4.37, 0.3],
@@ -21,8 +51,8 @@ while True:
     option = 0  # reset option selection
     while option not in options:
         option = input("Please select one of the following by typing in the option's number: \n"
-                       "[1] Lookup the nutritional facts for a food\n"  # database search/return later
-                       "[2] Display the combined nutritional information logged\n"  # to be implemented later
+                       "[1] Lookup the nutritional facts for a food\n"
+                       "[2] Display the combined nutritional information logged\n"
                        "[3] Exit the system\n")
 
     if option == '1':
@@ -45,14 +75,22 @@ while True:
             logChoice = input(f"Would you like to add {lookup} nutritional data to the log? Select 'y' or 'n': ")
         if logChoice == 'y':
             servings = input("Enter the number of servings to log: ")
+            logString = ""
+            logString += lookup + ',' + str(servings) + ','
             for i in range(7):
                 log[i] += float(servings) * float(nutriData[lookup][i])
+                if i < 6:
+                    logString += str(log[i]) + ','
+                else:
+                    logString += str(log[i])
+            log_food(logString)
             print(f"Your {lookup} nutritional data was logged!")
         continue
     elif option == '2':
         print("The nutritional data logged is as follows:")
-        for i in range(7):
-            print(f"{nutriData['labels'][i]}: {int(log[i])}")
+        # for i in range(7):
+        #     print(f"{nutriData['labels'][i]}: {int(log[i])}")
+        print(get_total())
         continue
     elif option == '3':
         print("You have chosen to exit. Goodbye!")

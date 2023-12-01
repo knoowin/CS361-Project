@@ -1,0 +1,8 @@
+
+calories: 361.6
+water (g): 381.0
+protein (g): 3.73
+carbs (g): 93.5
+sugar (g): 55.5
+fiber (g): 12.17
+fat (g): 1.2
