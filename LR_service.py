@@ -34,13 +34,13 @@ def log_food():
 
 def write_total(data):
     with open('total.txt', 'w') as outfile:
-        outfile.write(f"\ncalories: {data[0]}\n"
-                f"water (g): {data[1]}\n"
-                f"protein (g): {data[2]}\n"
-                f"carbs (g): {data[3]}\n"
-                f"sugar (g): {data[4]}\n"
-                f"fiber (g): {data[5]}\n"
-                f"fat (g): {data[6]}\n")
+        outfile.write(f"\ncalories: {round(data[0],2)}\n"
+                f"water (g): {round(data[1],2)}\n"
+                f"protein (g): {round(data[2],2)}\n"
+                f"carbs (g): {round(data[3],2)}\n"
+                f"sugar (g): {round(data[4],2)}\n"
+                f"fiber (g): {round(data[5],2)}\n"
+                f"fat (g): {round(data[6],2)}\n")
             
 
 def get_total():
@@ -63,6 +63,7 @@ def get_total():
 
 
 while True:
+    time.sleep(3)
     line = read_request()
     if line == "log":
         log_food() #store food

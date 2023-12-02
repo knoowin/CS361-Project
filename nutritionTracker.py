@@ -16,9 +16,6 @@ def log_food(data):
         f.write(data)
     with open('run_service.txt', 'w') as f:
         f.write("log")
-    time.sleep(2)
-    with open('run_service.txt', 'w') as f:
-        f.write("")
 
 
 def get_total():
@@ -28,11 +25,8 @@ def get_total():
     """
     with open('run_service.txt', 'w') as f:
         f.write("get_total")
-    time.sleep(2)
     with open('total.txt', 'r') as f:
         total = f.read()
-    with open('run_service.txt', 'w') as f:
-        f.write("")
     return total
 
 nutriData = {
@@ -90,7 +84,10 @@ while True:
         print("The nutritional data logged is as follows:")
         # for i in range(7):
         #     print(f"{nutriData['labels'][i]}: {int(log[i])}")
-        print(get_total())
+        totalData = ""
+        while totalData == "":
+            totalData = get_total()
+        print(totalData)
         continue
     elif option == '3':
         print("You have chosen to exit. Goodbye!")
