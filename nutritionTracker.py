@@ -82,8 +82,6 @@ while True:
         continue
     elif option == '2':
         print("The nutritional data logged is as follows:")
-        # for i in range(7):
-        #     print(f"{nutriData['labels'][i]}: {int(log[i])}")
         totalData = ""
         while totalData == "":
             totalData = get_total()
