@@ -73,6 +73,6 @@ while True:
         get_total()
 
     else:
-        time.sleep(1)
+        time.sleep(2)
 
 

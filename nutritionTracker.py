@@ -2,7 +2,6 @@
 # CS361 Project: nutritional lookup and tracker
 
 import sys
-import time
 
 
 def log_food(data):
