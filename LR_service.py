@@ -63,7 +63,7 @@ def get_total():
 
 
 while True:
-    time.sleep(3)
+    #time.sleep(3)
     line = read_request()
     if line == "log":
         log_food() #store food
